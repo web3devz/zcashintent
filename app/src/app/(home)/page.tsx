@@ -1,6 +1,7 @@
 "use client"
 
 import { SwapWidget } from "@defuse-protocol/defuse-sdk"
+import { motion } from "framer-motion"
 
 import { useDeterminePair } from "@src/app/(home)/_utils/useDeterminePair"
 import Paper from "@src/components/Paper"
@@ -20,33 +21,44 @@ export default function Swap() {
   const { tokenIn, tokenOut } = useDeterminePair()
   const referral = useIntentsReferral()
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.5 },
+    },
+  }
+
   return (
-    <Paper>
-      <SwapWidget
-        tokenList={tokenList}
-        userAddress={(state.isVerified ? state.address : undefined) ?? null}
-        sendNearTransaction={async (tx) => {
-          const result = await signAndSendTransactions({ transactions: [tx] })
+    <motion.div variants={containerVariants} initial="hidden" animate="visible">
+      <Paper>
+        <SwapWidget
+          tokenList={tokenList}
+          userAddress={(state.isVerified ? state.address : undefined) ?? null}
+          sendNearTransaction={async (tx) => {
+            const result = await signAndSendTransactions({ transactions: [tx] })
 
-          if (typeof result === "string") {
-            return { txHash: result }
-          }
+            if (typeof result === "string") {
+              return { txHash: result }
+            }
 
-          const outcome = result[0]
-          if (!outcome) {
-            throw new Error("No outcome")
-          }
+            const outcome = result[0]
+            if (!outcome) {
+              throw new Error("No outcome")
+            }
 
-          return { txHash: outcome.transaction.hash }
-        }}
-        signMessage={(params) => signMessage(params)}
-        onSuccessSwap={() => {}}
-        renderHostAppLink={renderAppLink}
-        userChainType={state.chainType ?? null}
-        referral={referral}
-        initialTokenIn={tokenIn}
-        initialTokenOut={tokenOut}
-      />
-    </Paper>
+            return { txHash: outcome.transaction.hash }
+          }}
+          signMessage={(params) => signMessage(params)}
+          onSuccessSwap={() => {}}
+          renderHostAppLink={renderAppLink}
+          userChainType={state.chainType ?? null}
+          referral={referral}
+          initialTokenIn={tokenIn}
+          initialTokenOut={tokenOut}
+        />
+      </Paper>
+    </motion.div>
   )
 }
+

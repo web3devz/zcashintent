@@ -1,31 +1,44 @@
-import { type PropsWithChildren, useContext } from "react"
+"use client"
 
-import { FeatureFlagsContext } from "@src/providers/FeatureFlagsProvider"
+import { motion } from "framer-motion"
+import type { PropsWithChildren } from "react"
 
-const Main = ({ children }: PropsWithChildren) => {
-  const { whitelabelTemplate } = useContext(FeatureFlagsContext)
+interface MainProps extends PropsWithChildren {
+  isFullWidth: boolean
+}
 
-  if (whitelabelTemplate === "turboswap") {
+const Main = ({ children, isFullWidth }: MainProps) => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
+  if (isFullWidth) {
     return (
-      <main className="flex-1 w-full max-w-[1280px] mx-auto md:pt-[10vh]">
-        <div className="flex justify-center lg:justify-end lg:w-1/2">
-          <div className="w-[480px] max-w-full">{children}</div>
-        </div>
-      </main>
+      <motion.main variants={containerVariants} initial="hidden" animate="visible" className="w-full">
+        {children}
+      </motion.main>
     )
   }
 
-  if (whitelabelTemplate === "trumpswap") {
-    return (
-      <main className="flex-1 w-full max-w-[1280px] mx-auto md:pt-[10vh]">
-        <div className="flex justify-center lg:justify-end lg:w-1/2">
-          <div className="w-[480px] max-w-full">{children}</div>
-        </div>
-      </main>
-    )
-  }
-
-  return <main className="flex md:flex-1">{children}</main>
+  return (
+    <motion.main
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="container py-6 md:py-8 lg:py-10"
+    >
+      <div className="mx-auto max-w-[800px]">{children}</div>
+    </motion.main>
+  )
 }
 
 export default Main
+

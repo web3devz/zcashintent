@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Text } from "@radix-ui/themes"
+import { motion } from "framer-motion"
 import clsx from "clsx"
 import { usePathname } from "next/navigation"
 
@@ -16,41 +16,58 @@ type Props = {
 
 const Navbar = ({ links = LINKS_HEADER }: Props) => {
   const pathname = usePathname()
+
+  const navVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { y: -20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.3 },
+    },
+  }
+
   return (
-    <nav className="flex justify-between items-center gap-4">
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      animate="visible"
+      className="flex justify-center items-center gap-2"
+    >
       {links.map((route, i) => {
         const isCurrentPage = route.href === pathname
         return (
-          // biome-ignore lint/suspicious/noArrayIndexKey: <reason>
-          <Link key={i} href={route.href}>
-            <Button
-              radius="full"
-              color="gray"
-              highContrast
-              variant={isCurrentPage ? "solid" : "soft"}
-              className={clsx(
-                "relative text-sm",
-                TURN_OFF_APPS || route.comingSoon
-                  ? "pointer-events-none text-gray-500"
-                  : "cursor-pointer",
-                isCurrentPage
-                  ? "text-white dark:text-black-400"
-                  : "bg-transparent"
-              )}
-              asChild
-            >
-              <div>
-                <Text weight="bold" wrap="nowrap">
-                  {route.label}
-                </Text>
+          <motion.div key={i} variants={itemVariants}>
+            <Link href={route.href}>
+              <div
+                className={clsx(
+                  "relative px-4 py-2 rounded-full text-sm font-bold transition-all duration-300",
+                  TURN_OFF_APPS || route.comingSoon
+                    ? "pointer-events-none text-gray-500"
+                    : "cursor-pointer hover:scale-105",
+                  isCurrentPage ? "bg-primary text-white shadow-md" : "bg-transparent hover:bg-secondary/50",
+                )}
+              >
+                {route.label}
                 {route.comingSoon && !isCurrentPage && <LabelComingSoon />}
               </div>
-            </Button>
-          </Link>
+            </Link>
+          </motion.div>
         )
       })}
-    </nav>
+    </motion.nav>
   )
 }
 
 export default Navbar
+
