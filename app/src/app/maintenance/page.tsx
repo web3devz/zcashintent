@@ -26,22 +26,12 @@ const MaintenancePage: NextPage = async () => {
           align="center"
           className="bg-white dark:bg-black-700 rounded-[16px] md:rounded-[24px] shadow-paper dark:shadow-paper-dark p-5 md:p-8"
         >
-          <Heading
-            as="h1"
-            size={{ initial: "7", md: "8" }}
-            weight="bold"
-            className="text-black-400"
-          >
+          <Heading as="h1" size={{ initial: "7", md: "8" }} weight="bold" className="text-black-400">
             Site Maintenance
           </Heading>
 
-          <Text
-            size={{ initial: "2", md: "3" }}
-            weight="medium"
-            className="text-gray-600"
-          >
-            We're currently performing maintenance on our site. Please check
-            back soon.
+          <Text size={{ initial: "2", md: "3" }} weight="medium" className="text-gray-600">
+            We're currently performing maintenance on our site. Please check back soon.
           </Text>
 
           <Image
@@ -58,3 +48,4 @@ const MaintenancePage: NextPage = async () => {
 }
 
 export default MaintenancePage
+

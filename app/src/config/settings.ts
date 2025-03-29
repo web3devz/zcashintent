@@ -25,8 +25,7 @@ export const settings: Settings = {
     },
     wallet: {
       title: "Manage Your Digital Wallet",
-      description:
-        "Secure and easy access to your digital assets. Track balances, manage transactions, and more.",
+      description: "Secure and easy access to your digital assets. Track balances, manage transactions, and more.",
     },
     withdraw: {
       title: "Withdraw Trusted Financial Partner",
@@ -35,26 +34,23 @@ export const settings: Settings = {
     },
     giftCreate: {
       title: "Gift Card",
-      description:
-        "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
+      description: "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
     },
     giftView: {
       title: "Сlaim your Gift",
-      description:
-        "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
+      description: "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
       openGraph: {
         type: "website",
         images: "/static/images/og-gift-card.jpg",
         title: "Сlaim your Gift",
-        description:
-          "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
+        description: "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
       },
       twitter: {
         images: "/static/images/og-gift-card.jpg",
         title: "Сlaim your Gift",
-        description:
-          "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
+        description: "Receive assets from friends and start your journey on NEAR Intents, hassle-free",
       },
     },
   },
 }
+

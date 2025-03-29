@@ -15,3 +15,4 @@ export interface GetCredentialResponse {
 export interface ErrorResponse {
   error: string | object
 }
+

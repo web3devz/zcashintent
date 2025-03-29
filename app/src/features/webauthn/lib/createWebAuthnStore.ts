@@ -24,9 +24,7 @@ type PasskeyService<T, P, C> = {
   signMessage: (challenge: C, credential: T) => Promise<P>
 }
 
-export const createWebAuthnStore = <T, P, C>(
-  service: PasskeyService<T, P, C>
-) => {
+export const createWebAuthnStore = <T, P, C>(service: PasskeyService<T, P, C>) => {
   return create<Store<T, P, C>>()(
     persist(
       (set, get) => ({
@@ -91,7 +89,8 @@ export const createWebAuthnStore = <T, P, C>(
         name: "app_wallets_passkey",
         storage: createJSONStorage(() => localStorage),
         partialize: (state) => ({ credential: state.credential }),
-      }
-    )
+      },
+    ),
   )
 }
+

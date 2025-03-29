@@ -11,10 +11,7 @@ import { useConnectWallet } from "@src/hooks/useConnectWallet"
 import { useWalletAgnosticSignMessage } from "@src/hooks/useWalletAgnosticSignMessage"
 import { walletVerificationMachine } from "@src/machines/walletVerificationMachine"
 import { useVerifiedWalletsStore } from "@src/stores/useVerifiedWalletsStore"
-import {
-  verifyWalletSignature,
-  walletVerificationMessageFactory,
-} from "@src/utils/walletMessage"
+import { verifyWalletSignature, walletVerificationMessageFactory } from "@src/utils/walletMessage"
 
 export function WalletVerificationProvider() {
   const { state, signOut } = useConnectWallet()
@@ -42,11 +39,7 @@ export function WalletVerificationProvider() {
     )
   }
 
-  if (
-    state.address != null &&
-    safetyCheck.data?.safetyStatus === "safe" &&
-    !state.isVerified
-  ) {
+  if (state.address != null && safetyCheck.data?.safetyStatus === "safe" && !state.isVerified) {
     return (
       <WalletVerificationUI
         onConfirm={() => {
@@ -70,10 +63,7 @@ function WalletBannedUI({ onAbort }: { onAbort: () => void }) {
   return <WalletBannedDialog open={true} onCancel={onAbort} />
 }
 
-function WalletVerificationUI({
-  onConfirm,
-  onAbort,
-}: { onConfirm: () => void; onAbort: () => void }) {
+function WalletVerificationUI({ onConfirm, onAbort }: { onConfirm: () => void; onAbort: () => void }) {
   const { state: unconfirmedWallet } = useConnectWallet()
 
   const signMessage = useWalletAgnosticSignMessage()
@@ -82,28 +72,18 @@ function WalletVerificationUI({
     walletVerificationMachine.provide({
       actors: {
         verifyWallet: fromPromise(async () => {
-          if (
-            unconfirmedWallet.address == null ||
-            unconfirmedWallet.chainType == null
-          ) {
+          if (unconfirmedWallet.address == null || unconfirmedWallet.chainType == null) {
             return false
           }
 
           const walletSignature = await signMessage(
-            walletVerificationMessageFactory(
-              unconfirmedWallet.address,
-              unconfirmedWallet.chainType
-            )
+            walletVerificationMessageFactory(unconfirmedWallet.address, unconfirmedWallet.chainType),
           )
 
-          return verifyWalletSignature(
-            walletSignature,
-            unconfirmedWallet.address,
-            unconfirmedWallet.chainType
-          )
+          return verifyWalletSignature(walletSignature, unconfirmedWallet.address, unconfirmedWallet.chainType)
         }),
       },
-    })
+    }),
   )
 
   const onConfirmRef = useRef(onConfirm)
@@ -121,7 +101,7 @@ function WalletVerificationUI({
           onAbortRef.current()
         }
       }).unsubscribe,
-    [serviceRef]
+    [serviceRef],
   )
 
   return (
@@ -138,3 +118,4 @@ function WalletVerificationUI({
     />
   )
 }
+

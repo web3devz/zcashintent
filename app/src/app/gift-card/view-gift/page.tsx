@@ -5,7 +5,6 @@ import Paper from "@src/components/Paper"
 import { LIST_TOKENS } from "@src/constants/tokens"
 import { useConnectWallet } from "@src/hooks/useConnectWallet"
 import { useTokenList } from "@src/hooks/useTokenList"
-import React from "react"
 import { useGiftCard } from "../_utils/link"
 
 export default function ViewGiftPage() {
@@ -24,3 +23,4 @@ export default function ViewGiftPage() {
     </Paper>
   )
 }
+

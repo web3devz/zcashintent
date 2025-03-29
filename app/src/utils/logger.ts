@@ -47,3 +47,4 @@ export let logger: ILogger = { ...noopLogger }
 export function setLogger(newLogger: ILogger) {
   logger = newLogger
 }
+

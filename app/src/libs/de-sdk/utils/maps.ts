@@ -6,3 +6,4 @@ export enum MapsEnum {
   SOLANA_MAINNET = "sol:mainnet",
   WEBAUTHN = "webauthn",
 }
+

@@ -50,11 +50,7 @@ const WalletConnectionsConnector = ({
     <div className="flex flex-col justify-between items-center gap-2.5">
       <div className="w-full flex justify-between items-center">
         <div className="flex justify-center items-center gap-4">
-          <NetworkIcon
-            chainIcon={chainIcon}
-            chainName={chainName}
-            isConnect={!!accountId}
-          />
+          <NetworkIcon chainIcon={chainIcon} chainName={chainName} isConnect={!!accountId} />
 
           <div className="flex flex-col">
             <Text size="2" weight="medium">
@@ -72,7 +68,7 @@ const WalletConnectionsConnector = ({
               type="button"
               className={clsx(
                 "w-[32px] h-[32px] flex justify-center items-center rounded-full border border-gray-500 dark:border-white",
-                isCopied && "bg-primary border-0 text-white"
+                isCopied && "bg-primary border-0 text-white",
               )}
             >
               <CopyIcon width={16} height={16} />
@@ -110,11 +106,7 @@ const WalletConnections = () => {
 
   return (
     <div className="flex flex-col">
-      <Text
-        size="1"
-        weight="medium"
-        className="text-gray-600 dark:text-gray-500 pb-2"
-      >
+      <Text size="1" weight="medium" className="text-gray-600 dark:text-gray-500 pb-2">
         Connected with
       </Text>
       {connections.map((connector, i) => {
@@ -201,19 +193,11 @@ const WalletConnections = () => {
 
 export default WalletConnections
 
-function PasskeyConnectionInfo({
-  credential,
-  onSignOut,
-}: { credential: string; onSignOut: () => void }) {
+function PasskeyConnectionInfo({ credential, onSignOut }: { credential: string; onSignOut: () => void }) {
   return (
     <div className="flex flex-col justify-between gap-2.5">
       <div className="flex items-center gap-3">
-        <Image
-          src="/static/icons/wallets/webauthn.svg"
-          alt=""
-          width={36}
-          height={36}
-        />
+        <Image src="/static/icons/wallets/webauthn.svg" alt="" width={36} height={36} />
 
         <div className="flex-1">
           <div className="text-sm font-medium text-gray-12">passkey</div>
@@ -233,11 +217,11 @@ function PasskeyConnectionInfo({
 
       <Callout.Root className="bg-warning px-3 py-2 text-warning-foreground">
         <Callout.Text className="text-xs font-medium">
-          <span className="font-bold">Store your passkeys securely.</span>{" "}
-          Losing your passkey means losing access to your account and any
-          associated funds permanently.
+          <span className="font-bold">Store your passkeys securely.</span> Losing your passkey means losing access to
+          your account and any associated funds permanently.
         </Callout.Text>
       </Callout.Root>
     </div>
   )
 }
+

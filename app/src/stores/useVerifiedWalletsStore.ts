@@ -23,6 +23,7 @@ export const useVerifiedWalletsStore = create<Store>()(
     {
       name: "app_wallets_verified_list",
       storage: createJSONStorage(() => localStorage),
-    }
-  )
+    },
+  ),
 )
+

@@ -9,3 +9,4 @@ const PaperHome = ({ children }: PropsWithChildren) => {
 }
 
 export default PaperHome
+

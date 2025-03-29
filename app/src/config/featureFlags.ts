@@ -5,12 +5,7 @@ import { headers } from "next/headers"
 import { domains } from "@src/config/domains"
 import { logger } from "@src/utils/logger"
 
-export type WhitelabelTemplateValue =
-  | "near-intents"
-  | "solswap"
-  | "dogecoinswap"
-  | "turboswap"
-  | "trumpswap"
+export type WhitelabelTemplateValue = "near-intents" | "solswap" | "dogecoinswap" | "turboswap" | "trumpswap"
 
 export const whitelabelTemplateFlag = flag({
   key: "whitelabelTemplate",
@@ -52,3 +47,4 @@ export const maintenanceModeFlag = flag({
     }
   },
 })
+

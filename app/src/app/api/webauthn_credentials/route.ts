@@ -20,7 +20,7 @@ const credentialSchema: z.ZodType<WebauthnCredential> = z.object({
         return false
       }
     },
-    { message: "Invalid raw_id format" }
+    { message: "Invalid raw_id format" },
   ),
   public_key: z.string().refine(
     (val) => {
@@ -32,7 +32,7 @@ const credentialSchema: z.ZodType<WebauthnCredential> = z.object({
         return false
       }
     },
-    { message: "Invalid public_key format" }
+    { message: "Invalid public_key format" },
   ),
   hostname: z.string().min(1).max(255),
 })
@@ -52,28 +52,17 @@ export async function POST(request: Request) {
 
     if (error) {
       logger.error(error)
-      return NextResponse.json(
-        { error: "Failed to create credential" } satisfies ErrorResponse,
-        { status: 500 }
-      )
+      return NextResponse.json({ error: "Failed to create credential" } satisfies ErrorResponse, { status: 500 })
     }
 
-    return NextResponse.json(
-      { success: true } satisfies CreateCredentialResponse,
-      { status: 201 }
-    )
+    return NextResponse.json({ success: true } satisfies CreateCredentialResponse, { status: 201 })
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: error.errors } satisfies ErrorResponse,
-        { status: 400 }
-      )
+      return NextResponse.json({ error: error.errors } satisfies ErrorResponse, { status: 400 })
     }
 
     logger.error(error)
-    return NextResponse.json(
-      { error: "Internal server error" } satisfies ErrorResponse,
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" } satisfies ErrorResponse, { status: 500 })
   }
 }
+

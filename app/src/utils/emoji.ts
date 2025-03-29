@@ -151,10 +151,7 @@ interface EmojiMapOptions {
  * @param options - Optional configuration
  * @returns An array of emojis
  */
-export function mapStringToEmojis(
-  input: string,
-  options: EmojiMapOptions = {}
-): string[] {
+export function mapStringToEmojis(input: string, options: EmojiMapOptions = {}): string[] {
   // Set default options
   const emojiList = options.emojiList || SAFE_EMOJIS
   const count = options.count || 10
@@ -192,3 +189,4 @@ export function mapStringToEmojis(
 
   return result
 }
+

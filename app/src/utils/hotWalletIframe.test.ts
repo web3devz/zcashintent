@@ -64,9 +64,7 @@ describe("hotWalletIframe", () => {
     // Simulate hot-close to trigger cleanup
     messageHandler(new MessageEvent("message", { data: "hot-close" }))
 
-    expect(global.window.removeEventListener).toHaveBeenCalledWith(
-      "message",
-      messageHandler
-    )
+    expect(global.window.removeEventListener).toHaveBeenCalledWith("message", messageHandler)
   })
 })
+

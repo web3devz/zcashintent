@@ -6,3 +6,4 @@ export const SentryTracer = () => {
   useSentrySetUser()
   return null
 }
+

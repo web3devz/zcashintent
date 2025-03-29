@@ -73,8 +73,7 @@ export async function generateMetadata(): Promise<Metadata> {
   } else if (templ === "trumpswap") {
     Object.assign(metadata, {
       title: "Trump-Swap: Make Swapping Great Again",
-      description:
-        "Swap $TRUMP directly from BTC, XRP, DOGE and 50+ other cryptocurrencies. Powered by NEAR Intents.",
+      description: "Swap $TRUMP directly from BTC, XRP, DOGE and 50+ other cryptocurrencies. Powered by NEAR Intents.",
       openGraph: {
         type: "website",
         images: `/favicons/${templ}/og-image.jpg`,
@@ -136,3 +135,11 @@ const RootLayout = async ({
 }
 
 export default RootLayout
+
+
+
+import './globals.css'
+
+export const metadata = {
+      generator: 'v0.dev'
+    };

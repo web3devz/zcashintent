@@ -10,20 +10,9 @@ const CardInvestorLogo = ({ src, title }: CardInvestorLogoProps) => {
   return (
     <div className="flex justify-center items-center w-full md:w-[238px] h-[90px] border border-black-100 rounded-2xl p-8">
       <div className="relative w-full flex justify-center items-center min-h-[25px] md:min-h-[35px]">
-        {src && (
-          <Image
-            src={src}
-            fill
-            alt="Card Investor Logo"
-            style={{ objectFit: "contain" }}
-          />
-        )}
+        {src && <Image src={src} fill alt="Card Investor Logo" style={{ objectFit: "contain" }} />}
         {title && (
-          <Text
-            size="4"
-            weight="bold"
-            className="text-gray-600 whitespace-nowrap"
-          >
+          <Text size="4" weight="bold" className="text-gray-600 whitespace-nowrap">
             {title}
           </Text>
         )}
@@ -33,3 +22,4 @@ const CardInvestorLogo = ({ src, title }: CardInvestorLogoProps) => {
 }
 
 export default CardInvestorLogo
+

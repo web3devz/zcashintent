@@ -2,15 +2,9 @@ import { Theme, type ThemeProps } from "@radix-ui/themes"
 import { ThemeProvider as NextThemesThemeProvider } from "next-themes"
 import type { ReactNode } from "react"
 
-import {
-  type WhitelabelTemplateValue,
-  whitelabelTemplateFlag,
-} from "@src/config/featureFlags"
+import { type WhitelabelTemplateValue, whitelabelTemplateFlag } from "@src/config/featureFlags"
 
-const accentsColors: Record<
-  WhitelabelTemplateValue,
-  ThemeProps["accentColor"]
-> = {
+const accentsColors: Record<WhitelabelTemplateValue, ThemeProps["accentColor"]> = {
   "near-intents": "orange",
   solswap: "purple",
   dogecoinswap: "amber",
@@ -34,3 +28,4 @@ export async function ThemeProvider({ children }: { children: ReactNode }) {
     </NextThemesThemeProvider>
   )
 }
+

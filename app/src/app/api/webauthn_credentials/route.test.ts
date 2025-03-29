@@ -33,7 +33,7 @@ describe("POST /api/webauthn_credentials", () => {
           public_key: "p256:9jjdnJ2vUn8jE7eUazd5VgDQo814yw5aTjzvuLgbAwZw",
           hostname: "localhost",
         }),
-      })
+      }),
     )
 
     expect(response.status).toBe(201)
@@ -49,7 +49,7 @@ describe("POST /api/webauthn_credentials", () => {
           public_key: "invalid base58",
           hostname: "",
         }),
-      })
+      }),
     )
 
     expect(response.status).toBe(400)
@@ -58,9 +58,7 @@ describe("POST /api/webauthn_credentials", () => {
   })
 
   it("should return 500 when database insert fails", async () => {
-    const mockInsert = vi
-      .fn()
-      .mockResolvedValue({ error: new Error("DB error") })
+    const mockInsert = vi.fn().mockResolvedValue({ error: new Error("DB error") })
     vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert })
 
     const response = await POST(
@@ -71,7 +69,7 @@ describe("POST /api/webauthn_credentials", () => {
           public_key: "p256:9jjdnJ2vUn8jE7eUazd5VgDQo814yw5aTjzvuLgbAwZw",
           hostname: "localhost",
         }),
-      })
+      }),
     )
 
     expect(response.status).toBe(500)
@@ -81,3 +79,4 @@ describe("POST /api/webauthn_credentials", () => {
     expect(logger.error).toHaveBeenCalledOnce()
   })
 })
+

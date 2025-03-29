@@ -8,7 +8,6 @@ import { useConnectWallet } from "@src/hooks/useConnectWallet"
 import { useIntentsReferral } from "@src/hooks/useIntentsReferral"
 import { useTokenList } from "@src/hooks/useTokenList"
 import { useWalletAgnosticSignMessage } from "@src/hooks/useWalletAgnosticSignMessage"
-import React from "react"
 import { createGiftCardLink } from "../_utils/link"
 
 export default function CreateGiftPage() {
@@ -40,3 +39,4 @@ export default function CreateGiftPage() {
     </Paper>
   )
 }
+

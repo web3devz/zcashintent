@@ -12,3 +12,4 @@ export function decodeOrder(encodedOrder: string): string {
   const json = new TextDecoder().decode(base64urlnopad.decode(encodedOrder))
   return JSON.parse(json).payload
 }
+

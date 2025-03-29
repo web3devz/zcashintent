@@ -11,3 +11,4 @@ const MyNearWalletGatewayLayout = ({ children }: PropsWithChildren) => {
 }
 
 export default MyNearWalletGatewayLayout
+

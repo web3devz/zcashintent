@@ -12,3 +12,4 @@ const HomeLayout: React.FC<PropsWithChildren> = ({ children }) => {
 }
 
 export default HomeLayout
+

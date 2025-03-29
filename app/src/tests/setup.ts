@@ -11,3 +11,4 @@ global.process.env.NEXT_PUBLIC_BASE_URL = TEST_BASE_URL
 beforeAll(() => server.listen({ onUnhandledRequest: "error" }))
 afterAll(() => server.close())
 afterEach(() => server.resetHandlers())
+

@@ -39,3 +39,4 @@ export const config = createConfig({
     [aurora.id]: http(),
   },
 })
+

@@ -7,19 +7,14 @@ import { useContext } from "react"
 
 import { FeatureFlagsContext } from "@src/providers/FeatureFlagsProvider"
 import Themes from "@src/types/themes"
-import {
-  NEXT_PUBLIC_LINK_DOCS,
-  NEXT_PUBLIC_PUBLIC_MAIL,
-  NEXT_PUBLIC_PUBLIC_TG,
-} from "@src/utils/environment"
+import { NEXT_PUBLIC_LINK_DOCS, NEXT_PUBLIC_PUBLIC_MAIL, NEXT_PUBLIC_PUBLIC_TG } from "@src/utils/environment"
 
 import AddTurboChainButton from "./AddTurboChainButton"
 import ComingSoon from "./ComingSoon"
 
 const Settings = () => {
   const { whitelabelTemplate } = useContext(FeatureFlagsContext)
-  const elementCircleStyle =
-    "bg-black w-[3px] h-[3px] rounded-full dark:bg-gray-100"
+  const elementCircleStyle = "bg-black w-[3px] h-[3px] rounded-full dark:bg-gray-100"
   return (
     <div>
       <Popover.Root>
@@ -70,29 +65,20 @@ const Settings = () => {
                 <ExternalLinkIcon width={16} height={16} />
               </a>
 
-              <a
-                href={`mailto:${NEXT_PUBLIC_PUBLIC_MAIL}`}
-                className="w-full flex justify-between items-center gap-2"
-              >
+              <a href={`mailto:${NEXT_PUBLIC_PUBLIC_MAIL}`} className="w-full flex justify-between items-center gap-2">
                 <Text size="2" weight="medium">
                   Request feature
                 </Text>
                 <ExternalLinkIcon width={16} height={16} />
               </a>
 
-              <a
-                href="/privacy-policy"
-                className="w-full flex justify-between items-center gap-2"
-              >
+              <a href="/privacy-policy" className="w-full flex justify-between items-center gap-2">
                 <Text size="2" weight="medium">
                   Privacy Policy
                 </Text>
               </a>
 
-              <a
-                href="/terms-of-service"
-                className="w-full flex justify-between items-center gap-2"
-              >
+              <a href="/terms-of-service" className="w-full flex justify-between items-center gap-2">
                 <Text size="2" weight="medium">
                   Terms of Service
                 </Text>
@@ -142,3 +128,4 @@ const DarkMode = () => {
 }
 
 export default Settings
+

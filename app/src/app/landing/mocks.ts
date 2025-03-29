@@ -33,10 +33,8 @@ export const infrastructureData: InfrastructureProps[] = [
     featureDesc: "Range of assets",
     featureIcon: "/static/logos/Coins.svg",
     dexDesc: "Limited to assets on a single chain",
-    cexDesc:
-      "Wide range, limited by listing policies and speed of integration of new networks / token standards",
-    defuseDesc:
-      "Extensive, includes FTs, NFTs, non-transferable assets or any other form of value on any chain",
+    cexDesc: "Wide range, limited by listing policies and speed of integration of new networks / token standards",
+    defuseDesc: "Extensive, includes FTs, NFTs, non-transferable assets or any other form of value on any chain",
   },
   {
     featureDesc: "Innovation",
@@ -71,7 +69,7 @@ export const infrastructureData: InfrastructureProps[] = [
     featureIcon: "/static/logos/Users.svg",
     dexDesc: "Direct, but limited to one chain",
     cexDesc: "Not usually direct, involves platform mediation",
-    defuseDesc:
-      "Direct, fast and cheap for any assets,  even on expensive or slow chains",
+    defuseDesc: "Direct, fast and cheap for any assets,  even on expensive or slow chains",
   },
 ]
+

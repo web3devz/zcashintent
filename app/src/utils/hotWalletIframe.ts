@@ -30,3 +30,4 @@ export function createHotWalletCloseObserver(): Promise<never> {
 export function raceFirst<T>(...asyncTasks: Array<Promise<T>>): Promise<T> {
   return Promise.race(asyncTasks)
 }
+

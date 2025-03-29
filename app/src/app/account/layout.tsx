@@ -10,3 +10,4 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
     </PreloadFeatureFlags>
   )
 }
+

@@ -1,20 +1,14 @@
-import type {
-  SignMessageParams,
-  SignedMessage,
-} from "@near-wallet-selector/core/src/lib/wallet/wallet.types"
+import type { SignMessageParams, SignedMessage } from "@near-wallet-selector/core/src/lib/wallet/wallet.types"
 import { useWalletSelector } from "@src/providers/WalletSelectorProvider"
 import type { SignAndSendTransactionsParams } from "@src/types/interfaces"
-import {
-  signAndSendTransactionsInNewWindow,
-  signMessageInNewWindow,
-} from "@src/utils/myNearWalletAdapter"
+import { signAndSendTransactionsInNewWindow, signMessageInNewWindow } from "@src/utils/myNearWalletAdapter"
 
 export function useNearWalletActions() {
   const { selector } = useWalletSelector()
 
   return {
     signMessage: async (
-      params: SignMessageParams
+      params: SignMessageParams,
     ): Promise<{
       signatureData: SignedMessage
       signedData: SignMessageParams
@@ -58,3 +52,4 @@ export function useNearWalletActions() {
     },
   }
 }
+

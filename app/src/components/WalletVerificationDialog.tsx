@@ -1,3 +1,5 @@
+"use client"
+
 import * as AlertDialog from "@radix-ui/react-alert-dialog"
 import {
   CheckIcon,
@@ -7,12 +9,7 @@ import {
   MinusCircledIcon,
   ReloadIcon,
 } from "@radix-ui/react-icons"
-import {
-  Button,
-  Callout,
-  Spinner,
-  AlertDialog as themes_AlertDialog,
-} from "@radix-ui/themes"
+import { Button, Callout, Spinner, AlertDialog as themes_AlertDialog } from "@radix-ui/themes"
 
 export function WalletVerificationDialog({
   open,
@@ -31,19 +28,9 @@ export function WalletVerificationDialog({
     <AlertDialog.Root open={open}>
       <themes_AlertDialog.Content className="max-w-md px-5 pt-5 pb-[max(env(safe-area-inset-bottom,0px),theme(spacing.5))] sm:animate-none animate-slide-up">
         {isFailure ? (
-          <FailureContent
-            open={open}
-            onConfirm={onConfirm}
-            onCancel={onCancel}
-            isVerifying={isVerifying}
-          />
+          <FailureContent open={open} onConfirm={onConfirm} onCancel={onCancel} isVerifying={isVerifying} />
         ) : (
-          <DefaultContent
-            open={open}
-            onConfirm={onConfirm}
-            onCancel={onCancel}
-            isVerifying={isVerifying}
-          />
+          <DefaultContent open={open} onConfirm={onConfirm} onCancel={onCancel} isVerifying={isVerifying} />
         )}
       </themes_AlertDialog.Content>
     </AlertDialog.Root>
@@ -89,9 +76,7 @@ function DefaultContent({
             <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-1">
               <CheckIcon className="w-3 h-3 text-blue-600 dark:text-blue-400" />
             </div>
-            <span className="text-sm">
-              Full access to all platform features
-            </span>
+            <span className="text-sm">Full access to all platform features</span>
           </li>
           <li className="flex items-center gap-3">
             <div className="bg-blue-100 dark:bg-blue-900 rounded-full p-1">
@@ -105,20 +90,13 @@ function DefaultContent({
       {/* Warning Message */}
       <Callout.Root className="mb-6 bg-warning px-3 py-2 text-warning-foreground">
         <Callout.Text className="text-xs">
-          Canceling this check will sign you out. You can sign in and verify
-          anytime.
+          Canceling this check will sign you out. You can sign in and verify anytime.
         </Callout.Text>
       </Callout.Root>
 
       <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6">
         <themes_AlertDialog.Cancel>
-          <Button
-            size="4"
-            type="button"
-            variant="soft"
-            color="gray"
-            onClick={onCancel}
-          >
+          <Button size="4" type="button" variant="soft" color="gray" onClick={onCancel}>
             Cancel
           </Button>
         </themes_AlertDialog.Cancel>
@@ -166,37 +144,25 @@ function FailureContent({
             <div className="bg-amber-100 dark:bg-amber-900 rounded-full p-1 mt-0.5">
               <Cross2Icon className="w-3 h-3 text-amber-600 dark:text-amber-400" />
             </div>
-            <span className="text-sm">
-              The verification was interrupted or cancelled
-            </span>
+            <span className="text-sm">The verification was interrupted or cancelled</span>
           </li>
           <li className="flex items-start gap-3">
             <div className="bg-amber-100 dark:bg-amber-900 rounded-full p-1 mt-0.5">
               <MinusCircledIcon className="w-3 h-3 text-amber-600 dark:text-amber-400" />
             </div>
-            <span className="text-sm">
-              Some wallets (or devices) are incompatible with the platform
-            </span>
+            <span className="text-sm">Some wallets (or devices) are incompatible with the platform</span>
           </li>
         </ul>
       </div>
 
       {/* Warning Message */}
       <Callout.Root className="mb-6 bg-warning px-3 py-2 text-warning-foreground">
-        <Callout.Text className="text-xs">
-          Try again or choose another sign-in option to continue.
-        </Callout.Text>
+        <Callout.Text className="text-xs">Try again or choose another sign-in option to continue.</Callout.Text>
       </Callout.Root>
 
       <div className="flex flex-col sm:flex-row justify-end gap-3 mt-6">
         <themes_AlertDialog.Cancel>
-          <Button
-            size="4"
-            type="button"
-            variant="soft"
-            color="gray"
-            onClick={onCancel}
-          >
+          <Button size="4" type="button" variant="soft" color="gray" onClick={onCancel}>
             Sign out
           </Button>
         </themes_AlertDialog.Cancel>
@@ -212,3 +178,4 @@ function FailureContent({
     </>
   )
 }
+

@@ -19,3 +19,4 @@ describe("mapStringToEmoji", () => {
     expect(result2).toEqual(result1)
   })
 })
+

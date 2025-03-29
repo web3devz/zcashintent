@@ -18,31 +18,22 @@ const Evolution = () => {
 
   return (
     <Section title="The Evolution of Trading Platforms">
-      <div
-        className="flex flex-col justify-center mb-[40px] md:mb-[96px]"
-        ref={divRef}
-      >
+      <div className="flex flex-col justify-center mb-[40px] md:mb-[96px]" ref={divRef}>
         <p className="text-center text-[20px] md:text-[32px] font-black text-gray-600">
           <Text as="span">
-            {settings.appName} unifies the best of CEXs and DEXs with a
-            scalable, multi-chain infrastructure. Our goal is to&nbsp;
+            {settings.appName} unifies the best of CEXs and DEXs with a scalable, multi-chain infrastructure. Our goal
+            is to&nbsp;
           </Text>
           <Text as="span" className="text-primary">
-            minimize centralization risks, unify liquidity, and unlock
-            DeFi&apos;s full potential
+            minimize centralization risks, unify liquidity, and unlock DeFi&apos;s full potential
           </Text>
-          <Text as="span">
-            , creating the perfect hub for the next generation of decentralized
-            finance.
-          </Text>
+          <Text as="span">, creating the perfect hub for the next generation of decentralized finance.</Text>
         </p>
       </div>
-      <TableInfrastructure
-        data={infrastructureData}
-        maxWidth={containerWidth}
-      />
+      <TableInfrastructure data={infrastructureData} maxWidth={containerWidth} />
     </Section>
   )
 }
 
 export default Evolution
+
