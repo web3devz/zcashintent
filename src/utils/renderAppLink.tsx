@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 import { useSignInWindowOpenState } from "@src/stores/useSignInWindowOpenState"
 
 export function renderAppLink(
-  routeName: "withdraw" | "deposit" | "gift" | "sign-in" | "swap" ,
+  routeName: "withdraw" | "deposit" | "gift" | "sign-in" | "swap" | "otc",
   children: ReactNode,
   props: { className?: string }
 ) {
@@ -43,6 +43,12 @@ export function renderAppLink(
     case "swap":
       return (
         <Link href="/" {...props}>
+          {children}
+        </Link>
+      )
+    case "otc":
+      return (
+        <Link href="/otc-desk/create-order" {...props}>
           {children}
         </Link>
       )
