@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { AccountWidget } from "@defuse-protocol/defuse-sdk";
 
 import Paper from "@src/components/Paper";
@@ -16,7 +16,7 @@ export default function AccountPage() {
   const [email, setEmail] = useState("");
   const [whatsapp, setWhatsapp] = useState("");
 
-  const handleAlertSubmit = (e) => {
+  const handleAlertSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Add your custom alert logic here, e.g., call an API to register the alert
     console.log("Custom alert set for:", { email, whatsapp });
