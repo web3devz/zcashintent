@@ -12,3 +12,4 @@ export function decodeGift(encodedGift: string): string {
   const json = new TextDecoder().decode(base64urlnopad.decode(encodedGift))
   return JSON.parse(json).payload
 }
+

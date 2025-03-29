@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import type { AccountState, WalletSelector } from "@near-wallet-selector/core"
 import { setupWalletSelector } from "@near-wallet-selector/core"
 import { setupHotWallet } from "@near-wallet-selector/hot-wallet"
@@ -7,15 +9,7 @@ import { setupMeteorWallet } from "@near-wallet-selector/meteor-wallet"
 import type { WalletSelectorModal } from "@near-wallet-selector/modal-ui"
 import { setupModal } from "@near-wallet-selector/modal-ui"
 import { setupMyNearWallet } from "@near-wallet-selector/my-near-wallet"
-import {
-  type ReactNode,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from "react"
+import { type ReactNode, createContext, useCallback, useContext, useEffect, useMemo, useState } from "react"
 import { distinctUntilChanged, map } from "rxjs"
 
 import { Loading } from "@src/components/Loading"
@@ -37,8 +31,7 @@ interface WalletSelectorContextValue {
   selectedWalletId: string | null
 }
 
-export const WalletSelectorContext =
-  createContext<WalletSelectorContextValue | null>(null)
+export const WalletSelectorContext = createContext<WalletSelectorContextValue | null>(null)
 
 export const WalletSelectorProvider: React.FC<{
   children: ReactNode
@@ -55,8 +48,7 @@ export const WalletSelectorProvider: React.FC<{
         nodeUrl: NEAR_NODE_URL,
         helperUrl: "",
         explorerUrl: "https://nearblocks.io",
-        indexerUrl:
-          "postgres://public_readonly:nearprotocol@mainnet.db.explorer.indexer.near.dev/mainnet_explorer",
+        indexerUrl: "postgres://public_readonly:nearprotocol@mainnet.db.explorer.indexer.near.dev/mainnet_explorer",
       },
       debug: true,
       modules: [setupMyNearWallet(), setupMeteorWallet(), setupHotWallet()],
@@ -92,7 +84,7 @@ export const WalletSelectorProvider: React.FC<{
     const subscription = selector.store.observable
       .pipe(
         map((state) => state.accounts),
-        distinctUntilChanged()
+        distinctUntilChanged(),
       )
       .subscribe((nextAccounts) => {
         console.log("Accounts Update", nextAccounts)
@@ -122,27 +114,21 @@ export const WalletSelectorProvider: React.FC<{
       accountId: accounts.find((account) => account.active)?.accountId || null,
       selectedWalletId: selector?.store.getState().selectedWalletId || null,
     }),
-    [selector, modal, accounts]
+    [selector, modal, accounts],
   )
 
   if (loading) {
     return <Loading />
   }
 
-  return (
-    <WalletSelectorContext.Provider value={walletSelectorContextValue}>
-      {children}
-    </WalletSelectorContext.Provider>
-  )
+  return <WalletSelectorContext.Provider value={walletSelectorContextValue}>{children}</WalletSelectorContext.Provider>
 }
 
 export function useWalletSelector() {
   const context = useContext(WalletSelectorContext)
 
   if (!context) {
-    throw new Error(
-      "useWalletSelector must be used within a WalletSelectorContextProvider"
-    )
+    throw new Error("useWalletSelector must be used within a WalletSelectorContextProvider")
   }
 
   return context
@@ -153,3 +139,4 @@ function assert(condition: unknown, msg?: string): asserts condition {
     throw new Error(msg)
   }
 }
+

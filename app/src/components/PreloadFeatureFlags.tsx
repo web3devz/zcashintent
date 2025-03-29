@@ -1,10 +1,7 @@
 import { evaluate } from "@vercel/flags/next"
 import type { ReactNode } from "react"
 
-import {
-  type WhitelabelTemplateValue,
-  whitelabelTemplateFlag,
-} from "@src/config/featureFlags"
+import { type WhitelabelTemplateValue, whitelabelTemplateFlag } from "@src/config/featureFlags"
 import { FeatureFlagsProvider } from "@src/providers/FeatureFlagsProvider"
 
 export async function PreloadFeatureFlags({
@@ -27,3 +24,4 @@ async function getEvaluatedFeatureFlags(): Promise<FeatureFlagValues> {
 export interface FeatureFlagValues {
   whitelabelTemplate: WhitelabelTemplateValue
 }
+

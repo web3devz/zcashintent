@@ -1,3 +1,5 @@
+"use client"
+
 import { setUser } from "@sentry/nextjs"
 import { useWallet as useSolanaWallet } from "@solana/wallet-adapter-react"
 import { EthereumProvider } from "@walletconnect/ethereum-provider"
@@ -49,8 +51,7 @@ export const useSentrySetUser = () => {
             try {
               const provider = await connector.getProvider()
               if (provider instanceof EthereumProvider) {
-                walletAppName =
-                  provider.session?.peer.metadata?.name ?? connector.name
+                walletAppName = provider.session?.peer.metadata?.name ?? connector.name
               }
             } catch {
               walletAppName = connector.name
@@ -69,3 +70,4 @@ export const useSentrySetUser = () => {
     }
   }, [selector.wallet, connector, solanaWallet, userConnectionState])
 }
+

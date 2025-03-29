@@ -17,11 +17,7 @@ export async function createWebauthnCredential(credential: WebauthnCredential) {
 
   if (!response.ok) {
     const error = (await response.json()) as ErrorResponse
-    throw new Error(
-      typeof error.error === "string"
-        ? error.error
-        : "Failed to create credential"
-    )
+    throw new Error(typeof error.error === "string" ? error.error : "Failed to create credential")
   }
 
   return response.json() as Promise<CreateCredentialResponse>
@@ -32,12 +28,9 @@ export async function getWebauthnCredential(rawId: string) {
 
   if (!response.ok) {
     const error = (await response.json()) as ErrorResponse
-    throw new Error(
-      typeof error.error === "string"
-        ? error.error
-        : "Failed to fetch credential"
-    )
+    throw new Error(typeof error.error === "string" ? error.error : "Failed to fetch credential")
   }
 
   return response.json() as Promise<GetCredentialResponse>
 }
+

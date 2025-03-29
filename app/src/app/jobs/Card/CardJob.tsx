@@ -1,53 +1,47 @@
+"use client"
+
 import { Text } from "@radix-ui/themes"
-import clsx from "clsx"
 import Image from "next/image"
 import Link from "next/link"
-import React from "react"
+import { motion } from "framer-motion"
 
 import type { JobsDetails } from "@src/types/interfaces"
+import { Card, CardContent, CardHeader } from "@/components/ui/card"
 
 const CardJob = ({ team, position, link, applicationLink }: JobsDetails) => {
-  const animationStyle =
-    "transition ease-in-out hover:-translate-y-[5px] duration-150"
   return (
-    <Link
-      href={link}
-      className={clsx(
-        "min-h-[147px] flex flex-col p-4 ld:p-8 shadow-card-multi bg-white rounded-2xl",
-        animationStyle
-      )}
-    >
-      <div className="w-full h-[24px] flex justify-end">
-        <span className="lg:translate-y-0 lg:top-5 right-5">
-          <Image
-            src="/static/icons/arrow-top-right.svg"
-            width={16}
-            height={16}
-            alt="Link Icon"
-          />
-        </span>
-      </div>
-      <div className="flex flex-col gap-2 px-8 py-4">
-        {applicationLink ? (
-          <Text
-            size="1"
-            weight="medium"
-            wrap="nowrap"
-            className="w-fit bg-primary rounded-full text-white px-3 py-2 text-sm"
-          >
-            Open Application
-          </Text>
-        ) : (
-          <Text as="p" size="3">
-            {team}
-          </Text>
-        )}
-        <Text as="p" size="4">
-          {position}
-        </Text>
-      </div>
+    <Link href={link}>
+      <motion.div whileHover={{ y: -5, scale: 1.02 }} whileTap={{ scale: 0.98 }} className="h-full">
+        <Card className="min-h-[147px] h-full shadow-md hover:shadow-lg transition-all duration-300">
+          <CardHeader className="pb-2">
+            <div className="w-full flex justify-between items-center">
+              {applicationLink ? (
+                <Text
+                  size="1"
+                  weight="medium"
+                  wrap="nowrap"
+                  className="w-fit bg-primary rounded-full text-white px-3 py-2 text-sm"
+                >
+                  Open Application
+                </Text>
+              ) : (
+                <Text as="p" size="3" className="text-muted-foreground">
+                  {team}
+                </Text>
+              )}
+              <Image src="/static/icons/arrow-top-right.svg" width={16} height={16} alt="Link Icon" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <Text as="p" size="4" className="font-semibold">
+              {position}
+            </Text>
+          </CardContent>
+        </Card>
+      </motion.div>
     </Link>
   )
 }
 
 export default CardJob
+

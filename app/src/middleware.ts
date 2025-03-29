@@ -5,8 +5,7 @@ import { maintenanceModeFlag } from "@src/config/featureFlags"
 import { logger } from "@src/utils/logger"
 
 export const config = {
-  matcher:
-    "/((?!api|.well-known/vercel|_next/static|_next/image|favicon.ico|favicons|static|maintenance).*)",
+  matcher: "/((?!api|.well-known/vercel|_next/static|_next/image|favicon.ico|favicons|static|maintenance).*)",
 }
 
 export async function middleware(request: NextRequest) {
@@ -23,3 +22,4 @@ export async function middleware(request: NextRequest) {
 
   return NextResponse.next()
 }
+

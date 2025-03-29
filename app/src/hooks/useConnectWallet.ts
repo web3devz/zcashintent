@@ -1,10 +1,7 @@
 "use client"
 
 import type { FinalExecutionOutcome } from "@near-wallet-selector/core"
-import {
-  useConnection as useSolanaConnection,
-  useWallet as useSolanaWallet,
-} from "@solana/wallet-adapter-react"
+import { useConnection as useSolanaConnection, useWallet as useSolanaWallet } from "@solana/wallet-adapter-react"
 import { useWalletModal } from "@solana/wallet-adapter-react-ui"
 import {
   useWebAuthnActions,
@@ -20,13 +17,7 @@ import type {
 } from "@src/types/interfaces"
 import type { SendTransactionParameters } from "@wagmi/core"
 import { useCallback } from "react"
-import {
-  type Connector,
-  useAccount,
-  useConnect,
-  useConnections,
-  useDisconnect,
-} from "wagmi"
+import { type Connector, useAccount, useConnect, useConnections, useDisconnect } from "wagmi"
 import { useEVMWalletActions } from "./useEVMWalletActions"
 import { useNearWalletActions } from "./useNearWalletActions"
 
@@ -150,9 +141,7 @@ export const useConnectWallet = (): ConnectWalletAction => {
   if (evmWalletAccount.address != null && evmWalletAccount.chainId) {
     state = {
       address: evmWalletAccount.address,
-      network: evmWalletAccount.chainId
-        ? `eth:${evmWalletAccount.chainId}`
-        : "unknown",
+      network: evmWalletAccount.chainId ? `eth:${evmWalletAccount.chainId}` : "unknown",
       chainType: ChainType.EVM,
       isVerified: false,
     }
@@ -190,12 +179,9 @@ export const useConnectWallet = (): ConnectWalletAction => {
 
   state.isVerified = useVerifiedWalletsStore(
     useCallback(
-      (store) =>
-        state.address != null
-          ? store.walletAddresses.includes(state.address)
-          : false,
-      [state.address]
-    )
+      (store) => (state.address != null ? store.walletAddresses.includes(state.address) : false),
+      [state.address],
+    ),
   )
 
   return {
@@ -205,10 +191,7 @@ export const useConnectWallet = (): ConnectWalletAction => {
     }): Promise<void> {
       const strategies = {
         [ChainType.Near]: () => handleSignInViaNearWalletSelector(),
-        [ChainType.EVM]: () =>
-          params.connector
-            ? handleSignInViaWagmi({ connector: params.connector })
-            : undefined,
+        [ChainType.EVM]: () => (params.connector ? handleSignInViaWagmi({ connector: params.connector }) : undefined),
         [ChainType.Solana]: () => handleSignInViaSolanaSelector(),
         [ChainType.WebAuthn]: () => webAuthnUI.open(),
       }
@@ -227,26 +210,18 @@ export const useConnectWallet = (): ConnectWalletAction => {
       return strategies[params.id]()
     },
 
-    sendTransaction: async (
-      params
-    ): Promise<string | FinalExecutionOutcome[]> => {
+    sendTransaction: async (params): Promise<string | FinalExecutionOutcome[]> => {
       const strategies = {
         [ChainType.Near]: async () =>
           await nearWalletConnect.signAndSendTransactions({
-            transactions:
-              params.tx as SignAndSendTransactionsParams["transactions"],
+            transactions: params.tx as SignAndSendTransactionsParams["transactions"],
           }),
 
-        [ChainType.EVM]: async () =>
-          await sendTransactions(params.tx as SendTransactionParameters),
+        [ChainType.EVM]: async () => await sendTransactions(params.tx as SendTransactionParameters),
 
         [ChainType.Solana]: async () => {
-          const transaction =
-            params.tx as SendTransactionSolanaParams["transactions"]
-          return await solanaWallet.sendTransaction(
-            transaction,
-            solanaConnection.connection
-          )
+          const transaction = params.tx as SendTransactionSolanaParams["transactions"]
+          return await solanaWallet.sendTransaction(transaction, solanaConnection.connection)
         },
 
         [ChainType.WebAuthn]: async () => {
@@ -265,3 +240,4 @@ export const useConnectWallet = (): ConnectWalletAction => {
     state,
   }
 }
+

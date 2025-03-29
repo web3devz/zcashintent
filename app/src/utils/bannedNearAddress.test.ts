@@ -11,3 +11,4 @@ describe("bannedNearAddress", () => {
     expect(isBannedNearAddress("notbannedaddress")).toBe(false)
   })
 })
+

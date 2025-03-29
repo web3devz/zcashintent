@@ -12,3 +12,4 @@ const PrivacyPolicyLayout: React.FC<PropsWithChildren> = ({ children }) => {
 }
 
 export default PrivacyPolicyLayout
+

@@ -81,3 +81,4 @@ export type WalletSignatureResult<T> =
   | NEP413SignatureData
   | SolanaSignatureData
   | WebAuthnSignatureData<T>
+

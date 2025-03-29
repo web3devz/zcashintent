@@ -32,9 +32,7 @@ export async function signIn(): Promise<string> {
   return base58.encode(new Uint8Array(credential.rawId))
 }
 
-export async function createNew(
-  passkeyName?: string
-): Promise<WebauthnCredential> {
+export async function createNew(passkeyName?: string): Promise<WebauthnCredential> {
   const formattedDate = new Date().toLocaleString(undefined, {
     month: "short",
     day: "numeric",
@@ -43,10 +41,7 @@ export async function createNew(
     hour12: false,
   })
 
-  const finalPasskeyName =
-    passkeyName == null || passkeyName === ""
-      ? `User ${formattedDate}`
-      : passkeyName
+  const finalPasskeyName = passkeyName == null || passkeyName === "" ? `User ${formattedDate}` : passkeyName
 
   const registrationOptions: CredentialCreationOptions = {
     publicKey: {
@@ -116,7 +111,7 @@ function getRootDomain(hostname: string): string {
 
 export async function signMessage(
   challenge: Uint8Array,
-  credential_: WebauthnCredential
+  credential_: WebauthnCredential,
 ): Promise<AuthenticatorAssertionResponse> {
   const assertion = await navigator.credentials.get({
     publicKey: {
@@ -148,9 +143,7 @@ export async function signMessage(
 }
 
 async function extractCredentialPublicKey(credential: PublicKeyCredential) {
-  return parsePublicKeyWithWebCrypto(
-    credential.response as AuthenticatorAttestationResponse
-  ).catch(async (err) => {
+  return parsePublicKeyWithWebCrypto(credential.response as AuthenticatorAttestationResponse).catch(async (err) => {
     logger.error(err)
 
     // Fallback
@@ -160,7 +153,7 @@ async function extractCredentialPublicKey(credential: PublicKeyCredential) {
 }
 
 async function parsePublicKeyWithWebCrypto(
-  response: AuthenticatorAttestationResponse
+  response: AuthenticatorAttestationResponse,
 ): Promise<{ publicKey: Uint8Array; algorithm: number }> {
   const publicKeyBuffer = response.getPublicKey()
   if (publicKeyBuffer == null) {
@@ -184,34 +177,27 @@ async function parsePublicKeyWithWebCrypto(
   }
 }
 
-async function parseECDSAKey(
-  publicKey: ArrayBuffer,
-  namedCurve: string
-): Promise<Uint8Array> {
+async function parseECDSAKey(publicKey: ArrayBuffer, namedCurve: string): Promise<Uint8Array> {
   const cryptoKey = await crypto.subtle.importKey(
     "spki", // Simple public-key infrastructure
     publicKey,
     { name: "ECDSA", namedCurve },
     true,
-    ["verify"]
+    ["verify"],
   )
 
   const rawKey = await crypto.subtle.exportKey("raw", cryptoKey)
 
   const rawKeyArray = new Uint8Array(rawKey)
   if (rawKeyArray.length !== 65) {
-    throw new Error(
-      `Invalid public key size for ECDSA curve, it must be 65 bytes, but got ${rawKeyArray.length} bytes`
-    )
+    throw new Error(`Invalid public key size for ECDSA curve, it must be 65 bytes, but got ${rawKeyArray.length} bytes`)
   }
   const x = rawKeyArray.slice(1, 33)
   const y = rawKeyArray.slice(33, 65)
   return new Uint8Array([...x, ...y])
 }
 
-async function parseEdDSAKey(
-  publicKeyBuffer: ArrayBuffer
-): Promise<Uint8Array> {
+async function parseEdDSAKey(publicKeyBuffer: ArrayBuffer): Promise<Uint8Array> {
   const rawKeyArray = new Uint8Array(publicKeyBuffer).slice(12)
   if (rawKeyArray.length !== 32) {
     throw new Error(`Invalid Ed25519 public key length: ${rawKeyArray.length}`)
@@ -231,8 +217,6 @@ function formatPublicKey(rawPublicKey: Uint8Array, algorithm: number): string {
 }
 
 export function isSupportedByBrowser(): boolean {
-  return (
-    window?.PublicKeyCredential !== undefined &&
-    typeof window.PublicKeyCredential === "function"
-  )
+  return window?.PublicKeyCredential !== undefined && typeof window.PublicKeyCredential === "function"
 }
+

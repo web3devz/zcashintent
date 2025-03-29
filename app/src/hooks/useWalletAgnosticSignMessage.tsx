@@ -4,14 +4,8 @@ import { useSignMessage } from "wagmi"
 import { useWebAuthnActions } from "@src/features/webauthn/hooks/useWebAuthnStore"
 import { ChainType, useConnectWallet } from "@src/hooks/useConnectWallet"
 import { useNearWalletActions } from "@src/hooks/useNearWalletActions"
-import type {
-  WalletMessage,
-  WalletSignatureResult,
-} from "@src/types/walletMessages"
-import {
-  createHotWalletCloseObserver,
-  raceFirst,
-} from "@src/utils/hotWalletIframe"
+import type { WalletMessage, WalletSignatureResult } from "@src/types/walletMessages"
+import { createHotWalletCloseObserver, raceFirst } from "@src/utils/hotWalletIframe"
 
 export function useWalletAgnosticSignMessage() {
   const { state } = useConnectWallet()
@@ -20,9 +14,7 @@ export function useWalletAgnosticSignMessage() {
   const solanaWallet = useWalletSolana()
   const { signMessage: signMessageWebAuthn } = useWebAuthnActions()
 
-  return async <T,>(
-    walletMessage: WalletMessage<T>
-  ): Promise<WalletSignatureResult<T>> => {
+  return async <T,>(walletMessage: WalletMessage<T>): Promise<WalletSignatureResult<T>> => {
     const chainType = state.chainType
 
     switch (chainType) {
@@ -43,7 +35,7 @@ export function useWalletAgnosticSignMessage() {
             ...walletMessage.NEP413,
             nonce: Buffer.from(walletMessage.NEP413.nonce),
           }),
-          createHotWalletCloseObserver()
+          createHotWalletCloseObserver(),
         )
         return { type: "NEP413", signatureData, signedData }
       }
@@ -53,9 +45,7 @@ export function useWalletAgnosticSignMessage() {
           throw new Error("Solana wallet does not support signMessage")
         }
 
-        const signatureData = await solanaWallet.signMessage(
-          walletMessage.SOLANA.message
-        )
+        const signatureData = await solanaWallet.signMessage(walletMessage.SOLANA.message)
 
         return {
           type: "SOLANA",
@@ -65,9 +55,7 @@ export function useWalletAgnosticSignMessage() {
       }
 
       case ChainType.WebAuthn: {
-        const signatureData = await signMessageWebAuthn(
-          walletMessage.WEBAUTHN.challenge
-        )
+        const signatureData = await signMessageWebAuthn(walletMessage.WEBAUTHN.challenge)
         return {
           type: "WEBAUTHN",
           signatureData,
@@ -84,3 +72,4 @@ export function useWalletAgnosticSignMessage() {
     }
   }
 }
+

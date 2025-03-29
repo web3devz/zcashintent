@@ -12,3 +12,4 @@ const GiftCardLayout: React.FC<PropsWithChildren> = ({ children }) => {
 }
 
 export default GiftCardLayout
+

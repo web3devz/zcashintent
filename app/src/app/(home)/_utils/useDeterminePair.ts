@@ -1,3 +1,5 @@
+"use client"
+
 import { isBaseToken } from "@defuse-protocol/defuse-sdk"
 import type { WhitelabelTemplateValue } from "@src/config/featureFlags"
 import { LIST_TOKENS } from "@src/constants/tokens"
@@ -5,18 +7,9 @@ import { FeatureFlagsContext } from "@src/providers/FeatureFlagsProvider"
 import { useContext } from "react"
 
 const pairs: Record<WhitelabelTemplateValue, [string, string]> = {
-  "near-intents": [
-    "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
-    "nep141:wrap.near",
-  ],
-  solswap: [
-    "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
-    "nep141:sol.omft.near",
-  ],
-  dogecoinswap: [
-    "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
-    "nep141:doge.omft.near",
-  ],
+  "near-intents": ["nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near", "nep141:wrap.near"],
+  solswap: ["nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near", "nep141:sol.omft.near"],
+  dogecoinswap: ["nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near", "nep141:doge.omft.near"],
   turboswap: [
     "nep141:eth-0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48.omft.near",
     "nep141:a35923162c49cf95e6bf26623385eb431ad920d3.factory.bridge.near",
@@ -50,3 +43,4 @@ export function useDeterminePair() {
 
   return { tokenIn, tokenOut }
 }
+

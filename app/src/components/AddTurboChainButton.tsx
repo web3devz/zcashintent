@@ -1,14 +1,7 @@
+"use client"
+
 import { CheckIcon, InfoCircledIcon } from "@radix-ui/react-icons"
-import {
-  Button,
-  Callout,
-  Dialog,
-  Flex,
-  Heading,
-  Separator,
-  Text,
-  VisuallyHidden,
-} from "@radix-ui/themes"
+import { Button, Callout, Dialog, Flex, Heading, Separator, Text, VisuallyHidden } from "@radix-ui/themes"
 import { AnimatePresence, motion } from "framer-motion"
 import Image from "next/image"
 import { useState, useTransition } from "react"
@@ -24,17 +17,8 @@ export default function AddTurboChainButton() {
       <Dialog.Trigger>
         <Button type="button" variant="soft" size="2" radius="full">
           <div className="flex items-center gap-2">
-            <Image
-              src="/static/icons/wallets/meta-mask.svg"
-              alt="MetaMask"
-              width={16}
-              height={16}
-            />
-            <Text
-              weight="bold"
-              wrap="nowrap"
-              style={{ color: "var(--gray-12)" }}
-            >
+            <Image src="/static/icons/wallets/meta-mask.svg" alt="MetaMask" width={16} height={16} />
+            <Text weight="bold" wrap="nowrap" style={{ color: "var(--gray-12)" }}>
               Add TurboChain
             </Text>
           </div>
@@ -62,27 +46,13 @@ export default function AddTurboChainButton() {
           </Flex>
 
           <Flex direction={"column"} align={"center"} gap={"2"}>
-            <Text
-              size={"2"}
-              weight={"bold"}
-              align={"center"}
-              className={"max-w-96"}
-            >
+            <Text size={"2"} weight={"bold"} align={"center"} className={"max-w-96"}>
               You can also add the network manually:
             </Text>
 
-            <Text
-              size={"2"}
-              color={"gray"}
-              weight={"medium"}
-              align={"center"}
-              className={"max-w-80"}
-            >
-              Open MetaMask and go to{" "}
-              <Text style={{ color: "var(--gray-12)" }}>
-                Settings &gt; Networks
-              </Text>
-              , then add and save the following details:
+            <Text size={"2"} color={"gray"} weight={"medium"} align={"center"} className={"max-w-80"}>
+              Open MetaMask and go to <Text style={{ color: "var(--gray-12)" }}>Settings &gt; Networks</Text>, then add
+              and save the following details:
             </Text>
           </Flex>
 
@@ -223,9 +193,7 @@ function AddToMetaMaskButton() {
               if (err instanceof ProviderNotFoundError) {
                 setError("Please install an EVM wallet first, like MetaMask.")
               } else {
-                setError(
-                  "Couldn't add chain automatically. Please try adding manually using the details below."
-                )
+                setError("Couldn't add chain automatically. Please try adding manually using the details below.")
               }
             }
           })
@@ -238,12 +206,7 @@ function AddToMetaMaskButton() {
               isSuccess ? "opacity-0" : "opacity-100"
             }`}
           >
-            <Image
-              src="/static/icons/wallets/meta-mask.svg"
-              alt="MetaMask"
-              width={16}
-              height={16}
-            />
+            <Image src="/static/icons/wallets/meta-mask.svg" alt="MetaMask" width={16} height={16} />
             <Text weight="bold" wrap="nowrap">
               Add to MetaMask
             </Text>
@@ -284,7 +247,6 @@ function AddToMetaMaskButton() {
 }
 
 function getPreferredConnector(connectors: Connector[]): Connector | undefined {
-  return (
-    connectors.find((connector) => connector.id === "injected") ?? connectors[0]
-  )
+  return connectors.find((connector) => connector.id === "injected") ?? connectors[0]
 }
+

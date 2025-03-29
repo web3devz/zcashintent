@@ -1,19 +1,12 @@
-import {
-  createWebauthnCredential,
-  getWebauthnCredential,
-} from "@src/features/webauthn/lib/webAuthnCredentialsAPI"
+import { createWebauthnCredential, getWebauthnCredential } from "@src/features/webauthn/lib/webAuthnCredentialsAPI"
 import { type WebauthnCredential, getRelayingPartyId } from "./webauthnService"
 
-export async function getCredential(
-  rawId: string
-): Promise<WebauthnCredential> {
+export async function getCredential(rawId: string): Promise<WebauthnCredential> {
   const response = await getWebauthnCredential(rawId)
   return { rawId, publicKey: response.public_key }
 }
 
-export async function saveCredential(
-  credential: WebauthnCredential
-): Promise<void> {
+export async function saveCredential(credential: WebauthnCredential): Promise<void> {
   await retryOperation(async () => {
     const response = await createWebauthnCredential({
       raw_id: credential.rawId,
@@ -26,11 +19,7 @@ export async function saveCredential(
   })
 }
 
-async function retryOperation<T>(
-  operation: () => Promise<T>,
-  maxRetries = 10,
-  delay = 1000
-): Promise<T> {
+async function retryOperation<T>(operation: () => Promise<T>, maxRetries = 10, delay = 1000): Promise<T> {
   let lastError: Error | undefined
   for (let i = 0; i < maxRetries; i++) {
     try {
@@ -42,3 +31,4 @@ async function retryOperation<T>(
   }
   throw lastError ?? new Error("Operation failed after max retries")
 }
+

@@ -1,7 +1,6 @@
-import type {
-  BaseTokenInfo,
-  UnifiedTokenInfo,
-} from "@defuse-protocol/defuse-sdk"
+"use client"
+
+import type { BaseTokenInfo, UnifiedTokenInfo } from "@defuse-protocol/defuse-sdk"
 
 import { useFlatTokenList } from "@src/hooks/useFlatTokenList"
 import { useSearchParams } from "next/navigation"
@@ -16,8 +15,7 @@ export function useTokenList(tokenList: (BaseTokenInfo | UnifiedTokenInfo)[]) {
     list = [
       ...list,
       {
-        defuseAssetId:
-          "nep141:base-0xa5c67d8d37b88c2d88647814da5578128e2c93b2.omft.near",
+        defuseAssetId: "nep141:base-0xa5c67d8d37b88c2d88647814da5578128e2c93b2.omft.near",
         address: "0xa5c67d8d37b88c2d88647814da5578128e2c93b2",
         decimals: 18,
         icon: "/static/icons/icon-fms.svg",
@@ -35,10 +33,7 @@ export function useTokenList(tokenList: (BaseTokenInfo | UnifiedTokenInfo)[]) {
   return list
 }
 
-function compareTokens(
-  a: BaseTokenInfo | UnifiedTokenInfo,
-  b: BaseTokenInfo | UnifiedTokenInfo
-): number {
+function compareTokens(a: BaseTokenInfo | UnifiedTokenInfo, b: BaseTokenInfo | UnifiedTokenInfo): number {
   const aTags = (a as { tags?: string[] }).tags || []
   const bTags = (b as { tags?: string[] }).tags || []
 
@@ -70,8 +65,7 @@ function getMarketCapOrder(tags: string[]): number | undefined {
   return Number.parseInt(mcTag.split(":")[1])
 }
 
-function sortTokensByMarketCap(
-  tokens: (BaseTokenInfo | UnifiedTokenInfo)[]
-): (BaseTokenInfo | UnifiedTokenInfo)[] {
+function sortTokensByMarketCap(tokens: (BaseTokenInfo | UnifiedTokenInfo)[]): (BaseTokenInfo | UnifiedTokenInfo)[] {
   return Array.from(tokens).sort(compareTokens)
 }
+

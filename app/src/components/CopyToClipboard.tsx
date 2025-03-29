@@ -22,7 +22,7 @@ const Copy = ({ children, value }: Props) => {
         className={clsx(
           "h-full absolute -top-[50%] -right-[62px] translate-y-1/2 text-xs leading-5 text-primary",
           animationStyle,
-          isCopied ? "visible translate-x-0" : "invisible -translate-x-[5px]"
+          isCopied ? "visible translate-x-0" : "invisible -translate-x-[5px]",
         )}
       >
         Copied
@@ -52,11 +52,8 @@ export function CopyIconButton({ copyValue }: { copyValue: string }) {
         })
       }}
     >
-      {isCopied ? (
-        <CheckIcon width={"18"} height={"18"} />
-      ) : (
-        <CopyIcon width={"18"} height={"18"} />
-      )}
+      {isCopied ? <CheckIcon width={"18"} height={"18"} /> : <CopyIcon width={"18"} height={"18"} />}
     </IconButton>
   )
 }
+

@@ -1,12 +1,5 @@
-import {
-  getCredential,
-  saveCredential,
-} from "@src/features/webauthn/lib/webAuthnCredentialService"
-import {
-  createNew,
-  signIn,
-  signMessage,
-} from "@src/features/webauthn/lib/webauthnService"
+import { getCredential, saveCredential } from "@src/features/webauthn/lib/webAuthnCredentialService"
+import { createNew, signIn, signMessage } from "@src/features/webauthn/lib/webauthnService"
 import { createWebAuthnStore } from "../lib/createWebAuthnStore"
 
 export const useWebAuthnStore = createWebAuthnStore({
@@ -36,3 +29,4 @@ export function useWebAuthnCurrentCredential() {
 }
 
 export { useWebAuthnUIStore } from "./useWebAuthnUiStore"
+

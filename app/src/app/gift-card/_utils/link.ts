@@ -1,3 +1,5 @@
+"use client"
+
 import { logger } from "@src/utils/logger"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
@@ -23,3 +25,4 @@ export function useGiftCard() {
 
   return payload
 }
+

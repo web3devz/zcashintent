@@ -16,3 +16,4 @@ export const getChainIconFromId = (defuseAssetId: string): string => {
       return ""
   }
 }
+

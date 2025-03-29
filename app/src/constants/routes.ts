@@ -18,3 +18,4 @@ export const LINKS_HEADER: NavigationLinks[] = [
   { href: Navigation.HOME, label: "Swap" },
   { href: Navigation.WITHDRAW, label: "Withdraw" },
 ]
+

@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import type { ReactNode } from "react"
 
@@ -6,7 +8,7 @@ import { useSignInWindowOpenState } from "@src/stores/useSignInWindowOpenState"
 export function renderAppLink(
   routeName: "withdraw" | "deposit" | "gift" | "sign-in" | "swap" | "otc",
   children: ReactNode,
-  props: { className?: string }
+  props: { className?: string },
 ) {
   switch (routeName) {
     case "deposit":
@@ -57,3 +59,4 @@ export function renderAppLink(
       return <div {...props}>{children}</div>
   }
 }
+

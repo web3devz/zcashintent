@@ -1,7 +1,4 @@
-import {
-  deserializeSignMessageParams,
-  serializeSignMessageParams,
-} from "@src/utils/myNearWalletAdapter"
+import { deserializeSignMessageParams, serializeSignMessageParams } from "@src/utils/myNearWalletAdapter"
 import { expect, it } from "vitest"
 
 it("should serialize/deserialize message to sign", () => {
@@ -13,7 +10,6 @@ it("should serialize/deserialize message to sign", () => {
     state: "foo",
   }
 
-  expect(deserializeSignMessageParams(serializeSignMessageParams(obj))).toEqual(
-    obj
-  )
+  expect(deserializeSignMessageParams(serializeSignMessageParams(obj))).toEqual(obj)
 })
+

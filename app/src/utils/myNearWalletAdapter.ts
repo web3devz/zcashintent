@@ -1,7 +1,4 @@
-import type {
-  SignMessageParams,
-  SignedMessage,
-} from "@near-wallet-selector/core/src/lib/wallet/wallet.types"
+import type { SignMessageParams, SignedMessage } from "@near-wallet-selector/core/src/lib/wallet/wallet.types"
 import { z } from "zod"
 
 import type { SignAndSendTransactionsParams } from "@src/types/interfaces"
@@ -159,10 +156,7 @@ function makeSignUrl(params: SignMessageParams, channelId: string) {
   return url.toString()
 }
 
-function makeSignAndSendTransactionsUrl(
-  params: SignAndSendTransactionsParams,
-  channelId: string
-) {
+function makeSignAndSendTransactionsUrl(params: SignAndSendTransactionsParams, channelId: string) {
   const serializedParams = serializeSignAndSendTransactionsParams(params)
 
   const url = getGatewayURL(channelId)
@@ -172,18 +166,14 @@ function makeSignAndSendTransactionsUrl(
   return url.toString()
 }
 
-export function serializeSignAndSendTransactionsParams(
-  params: SignAndSendTransactionsParams
-) {
+export function serializeSignAndSendTransactionsParams(params: SignAndSendTransactionsParams) {
   const encodedParams = {
     ...params,
   }
   return JSON.stringify(encodedParams)
 }
 
-export function deserializeSignAndSendTransactionsParams(
-  params: string
-): SignAndSendTransactionsParams {
+export function deserializeSignAndSendTransactionsParams(params: string): SignAndSendTransactionsParams {
   return JSON.parse(params)
 }
 
@@ -195,9 +185,7 @@ export function serializeSignMessageParams(params: SignMessageParams) {
   return JSON.stringify(encodedParams)
 }
 
-export function deserializeSignMessageParams(
-  params: string
-): SignMessageParams {
+export function deserializeSignMessageParams(params: string): SignMessageParams {
   const obj = JSON.parse(params)
   return signMessageSchema.parse({
     ...obj,
@@ -223,11 +211,7 @@ function openWindowWithMessageHandler({
   const left = window.screen.width / 2 - width / 2
   const top = window.screen.height / 2 - height / 2
 
-  const win = window.open(
-    url,
-    "_blank",
-    `width=${width},height=${height},top=${top},left=${left},resizable,scrollbars`
-  )
+  const win = window.open(url, "_blank", `width=${width},height=${height},top=${top},left=${left},resizable,scrollbars`)
 
   if (win != null) {
     // Need to clean opener to prevent security issues;
@@ -262,10 +246,7 @@ function openWindowWithMessageHandler({
 /**
  * Returns a promise that resolves when either the promise or the signal is aborted
  */
-function abortablePromise<T>(
-  promise: Promise<T>,
-  signal: AbortSignal
-): Promise<T> {
+function abortablePromise<T>(promise: Promise<T>, signal: AbortSignal): Promise<T> {
   return Promise.race([
     promise,
     new Promise<T>((_, reject) => {
@@ -306,3 +287,4 @@ function anySignal(iterable: AbortSignal[]): AbortSignal {
 
   return controller.signal
 }
+

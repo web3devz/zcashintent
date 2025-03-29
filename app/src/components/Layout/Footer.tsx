@@ -1,3 +1,6 @@
+"use client"
+
+import { motion } from "framer-motion"
 import Image from "next/image"
 import { useContext } from "react"
 
@@ -6,57 +9,93 @@ import DogecoinLogo from "../../../public/static/logos/blockchain-strips/dogecoi
 import NearLogo from "../../../public/static/logos/blockchain-strips/near.svg"
 import SolanaLogo from "../../../public/static/logos/blockchain-strips/solana.svg"
 
-const Footer = () => {
+interface FooterProps {
+  isFullWidth: boolean
+}
+
+const Footer = ({ isFullWidth }: FooterProps) => {
   const { whitelabelTemplate } = useContext(FeatureFlagsContext)
 
+  const footerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  }
+
+  // Template-specific footers
   if (whitelabelTemplate === "solswap") {
     return (
-      <footer className="w-full flex justify-center items-center py-7">
-        <div className="flex justify-center items-center text-sm font-medium text-white gap-1.5 bg-black/25 px-3 py-1.5 rounded-full">
-          <span>Built by</span>
-          <NearLogo />
-          <span>with love for</span>
-          <SolanaLogo />
+      <motion.footer
+        variants={footerVariants}
+        initial="hidden"
+        animate="visible"
+        className={`w-full py-6 ${isFullWidth ? "" : "container"}`}
+      >
+        <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center text-sm font-medium text-white gap-1.5 bg-black/25 px-3 py-1.5 rounded-full backdrop-blur-sm">
+            <span>Built by</span>
+            <NearLogo />
+            <span>with love for</span>
+            <SolanaLogo />
+          </div>
         </div>
-      </footer>
+      </motion.footer>
     )
   }
 
   if (whitelabelTemplate === "turboswap") {
     return (
-      <footer className="lg:hidden">
+      <motion.footer
+        variants={footerVariants}
+        initial="hidden"
+        animate="visible"
+        className={`lg:hidden py-6 ${isFullWidth ? "" : "container"}`}
+      >
         <Image
           src="/static/templates/turboswap/coin-frog.png"
           alt=""
           width={400}
           height={400}
-          className="w-full max-w-[400px] mx-auto"
+          className="w-full max-w-[400px] mx-auto animate-pulse-slow"
           priority
         />
-      </footer>
+      </motion.footer>
     )
   }
 
   if (whitelabelTemplate === "trumpswap") {
     return (
-      <footer className="lg:hidden">
+      <motion.footer
+        variants={footerVariants}
+        initial="hidden"
+        animate="visible"
+        className={`lg:hidden py-6 ${isFullWidth ? "" : "container"}`}
+      >
         <Image
           src="/static/templates/trumpswap/trump-standing.png"
           alt=""
           width={400}
           height={400}
-          className="w-full max-w-[400px] mx-auto"
+          className="w-full max-w-[400px] mx-auto animate-pulse-slow"
           priority
         />
-      </footer>
+      </motion.footer>
     )
   }
 
   if (whitelabelTemplate === "dogecoinswap") {
     return (
-      <footer className="py-7">
-        <div className=" flex justify-center items-center">
-          <div className="flex justify-center items-center gap-1.5 text-sm font-medium bg-white dark:bg-black px-3 py-1.5 rounded-full">
+      <motion.footer
+        variants={footerVariants}
+        initial="hidden"
+        animate="visible"
+        className={`py-6 ${isFullWidth ? "" : "container"}`}
+      >
+        <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center gap-1.5 text-sm font-medium bg-white dark:bg-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
             <span className="text-secondary">Built by</span>
             <NearLogo className="text-black dark:text-white" />
             <span className="text-secondary">with love for</span>
@@ -70,20 +109,29 @@ const Footer = () => {
           loading="lazy"
           width={750}
           height={528}
-          className="object-contain md:hidden"
+          className="object-contain md:hidden animate-pulse-slow"
         />
-      </footer>
+      </motion.footer>
     )
   }
 
+  // Default footer
   return (
-    <footer className="w-full flex justify-center items-center py-7">
-      <div className="flex justify-center items-center gap-1.5 text-sm font-medium bg-white dark:bg-black px-3 py-1.5 rounded-full">
-        <span className="text-secondary">Powered by</span>
-        <NearLogo className="text-black dark:text-white" />
+    <motion.footer
+      variants={footerVariants}
+      initial="hidden"
+      animate="visible"
+      className={`py-6 ${isFullWidth ? "" : "container"}`}
+    >
+      <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center gap-1.5 text-sm font-medium bg-white dark:bg-black px-3 py-1.5 rounded-full shadow-md backdrop-blur-sm">
+          <span className="text-secondary">Powered by</span>
+          <NearLogo className="text-black dark:text-white" />
+        </div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
 
 export default Footer
+

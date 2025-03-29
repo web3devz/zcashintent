@@ -5,13 +5,9 @@ export function parsePublicKeyFromCBOR(cred: PublicKeyCredential): {
   publicKey: Uint8Array
   algorithm: number
 } {
-  const decodedAttestationObj = cbor.decode(
-    (cred.response as AuthenticatorAttestationResponse).attestationObject
-  )
+  const decodedAttestationObj = cbor.decode((cred.response as AuthenticatorAttestationResponse).attestationObject)
   const authData = parseAuthenticatorData(decodedAttestationObj.authData)
-  const publicKey = cbor.decode(
-    authData?.credentialPublicKey?.buffer as ArrayBuffer
-  )
+  const publicKey = cbor.decode(authData?.credentialPublicKey?.buffer as ArrayBuffer)
 
   const algorithm = publicKey.get(3)
 
@@ -53,3 +49,4 @@ export function parsePublicKeyFromCBOR(cred: PublicKeyCredential): {
       throw new Error(`Unsupported algorithm: ${algorithm}`)
   }
 }
+

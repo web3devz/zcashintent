@@ -1,15 +1,9 @@
-import {
-  type BaseTokenInfo,
-  type UnifiedTokenInfo,
-  isBaseToken,
-} from "@defuse-protocol/defuse-sdk"
+import { type BaseTokenInfo, type UnifiedTokenInfo, isBaseToken } from "@defuse-protocol/defuse-sdk"
 import { LIST_TOKENS } from "@src/constants/tokens"
 
 export const safeTokenList = filterTokenWithDifferentDecimals(LIST_TOKENS)
 
-export function filterTokenWithDifferentDecimals(
-  tokenList: (BaseTokenInfo | UnifiedTokenInfo)[]
-) {
+export function filterTokenWithDifferentDecimals(tokenList: (BaseTokenInfo | UnifiedTokenInfo)[]) {
   return tokenList.filter((token) => {
     if (isBaseToken(token)) {
       return true
@@ -19,3 +13,4 @@ export function filterTokenWithDifferentDecimals(
     return new Set(decimals).size === 1
   })
 }
+

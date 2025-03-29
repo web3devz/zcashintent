@@ -1,7 +1,4 @@
-import {
-  createEmptyIntentMessage,
-  formatSignedIntent,
-} from "@defuse-protocol/defuse-sdk"
+import { createEmptyIntentMessage, formatSignedIntent } from "@defuse-protocol/defuse-sdk"
 import { config } from "@defuse-protocol/defuse-sdk/config"
 import { JsonRpcProvider } from "@near-js/providers"
 import type { CodeResult } from "near-api-js/lib/providers/provider"
@@ -12,7 +9,7 @@ import { hasMessage } from "@src/utils/errors"
 export async function verifyWalletSignature(
   signature: Parameters<typeof formatSignedIntent>[0],
   credential: string,
-  credentialType: ChainType
+  credentialType: ChainType,
 ): Promise<boolean> {
   if (
     /**
@@ -53,11 +50,9 @@ export async function verifyWalletSignature(
   }
 }
 
-export function walletVerificationMessageFactory(
-  credential: string,
-  credentialType: ChainType
-) {
+export function walletVerificationMessageFactory(credential: string, credentialType: ChainType) {
   return createEmptyIntentMessage({
     signerId: { credential, credentialType },
   })
 }
+

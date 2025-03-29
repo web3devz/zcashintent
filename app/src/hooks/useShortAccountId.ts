@@ -7,9 +7,7 @@ const useShortAccountId = (address: string) => {
 
   useEffect(() => {
     if (address && address.length >= 34) {
-      setShortAccountId(
-        `${address.substring(0, 4)}...${address.substring(address.length - 5, address.length)}`
-      )
+      setShortAccountId(`${address.substring(0, 4)}...${address.substring(address.length - 5, address.length)}`)
     } else {
       setShortAccountId(address)
     }
@@ -21,3 +19,4 @@ const useShortAccountId = (address: string) => {
 }
 
 export default useShortAccountId
+

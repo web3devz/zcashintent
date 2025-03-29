@@ -12,3 +12,4 @@ export function WebAuthnProvider({ children }: { children: ReactNode }) {
     </>
   )
 }
+

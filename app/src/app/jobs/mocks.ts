@@ -22,3 +22,4 @@ export const jobsData: JobsDetails[] = [
     link: "https://defuse.bamboohr.com/careers/26",
   },
 ]
+

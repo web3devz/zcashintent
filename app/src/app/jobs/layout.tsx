@@ -12,3 +12,4 @@ const JobsLayout: React.FC<PropsWithChildren> = ({ children }) => {
 }
 
 export default JobsLayout
+

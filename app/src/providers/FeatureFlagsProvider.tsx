@@ -7,13 +7,7 @@ export const FeatureFlagsContext = createContext<FeatureFlagValues>({
   whitelabelTemplate: "near-intents",
 })
 
-export function FeatureFlagsProvider({
-  children,
-  flags,
-}: { children: ReactNode; flags: FeatureFlagValues }) {
-  return (
-    <FeatureFlagsContext.Provider value={flags}>
-      {children}
-    </FeatureFlagsContext.Provider>
-  )
+export function FeatureFlagsProvider({ children, flags }: { children: ReactNode; flags: FeatureFlagValues }) {
+  return <FeatureFlagsContext.Provider value={flags}>{children}</FeatureFlagsContext.Provider>
 }
+

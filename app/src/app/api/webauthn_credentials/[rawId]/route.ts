@@ -15,13 +15,10 @@ const rawIdSchema = z.string().refine(
       return false
     }
   },
-  { message: "Invalid raw_id format" }
+  { message: "Invalid raw_id format" },
 )
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ rawId: string }> }
-) {
+export async function GET(request: Request, { params }: { params: Promise<{ rawId: string }> }) {
   try {
     const { rawId: rawId_ } = await params
     const rawId = rawIdSchema.parse(rawId_)
@@ -34,17 +31,11 @@ export async function GET(
 
     if (error) {
       logger.error(error)
-      return NextResponse.json(
-        { error: "Failed to fetch credential" },
-        { status: 500 }
-      )
+      return NextResponse.json({ error: "Failed to fetch credential" }, { status: 500 })
     }
 
     if (!data) {
-      return NextResponse.json(
-        { error: "Credential not found" },
-        { status: 404 }
-      )
+      return NextResponse.json({ error: "Credential not found" }, { status: 404 })
     }
 
     return NextResponse.json({
@@ -56,9 +47,7 @@ export async function GET(
     }
 
     logger.error(error)
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }
+

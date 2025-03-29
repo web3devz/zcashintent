@@ -2,10 +2,7 @@
 
 import type { WalletSelector } from "@near-wallet-selector/core"
 import { useWalletSelector } from "@src/providers/WalletSelectorProvider"
-import {
-  deserializeSignAndSendTransactionsParams,
-  deserializeSignMessageParams,
-} from "@src/utils/myNearWalletAdapter"
+import { deserializeSignAndSendTransactionsParams, deserializeSignMessageParams } from "@src/utils/myNearWalletAdapter"
 import { useEffect } from "react"
 
 export default function MyNearWalletGateway() {
@@ -88,17 +85,12 @@ function relayResultToOpenerTransactionHashes(url: URL) {
   window.close()
 }
 
-async function signAndSendTransactions(
-  url: URL,
-  walletSelector: WalletSelector
-) {
+async function signAndSendTransactions(url: URL, walletSelector: WalletSelector) {
   const paramsComponent = url.searchParams.get("params")
   if (paramsComponent == null) {
     throw new Error("Missing params")
   }
-  const params = deserializeSignAndSendTransactionsParams(
-    decodeURIComponent(paramsComponent)
-  )
+  const params = deserializeSignAndSendTransactionsParams(decodeURIComponent(paramsComponent))
 
   const wallet = await walletSelector.wallet()
   await wallet.signAndSendTransactions(params)
@@ -110,9 +102,7 @@ async function signMessage(url: URL, walletSelector: WalletSelector) {
     throw new Error("Missing params")
   }
 
-  const params = deserializeSignMessageParams(
-    decodeURIComponent(paramsComponent)
-  )
+  const params = deserializeSignMessageParams(decodeURIComponent(paramsComponent))
 
   const wallet = await walletSelector.wallet()
   await wallet.signMessage(params)
@@ -129,6 +119,7 @@ function queryStringToObject(queryString: string) {
       acc[key] = decodeURIComponent(value) // Decode URI components
       return acc
     },
-    {} as Record<string, string>
+    {} as Record<string, string>,
   )
 }
+

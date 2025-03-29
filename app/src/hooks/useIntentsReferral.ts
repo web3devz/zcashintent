@@ -1,3 +1,5 @@
+"use client"
+
 import type { WhitelabelTemplateValue } from "@src/config/featureFlags"
 import { FeatureFlagsContext } from "@src/providers/FeatureFlagsProvider"
 import { useContext } from "react"
@@ -14,3 +16,4 @@ export function useIntentsReferral() {
   const { whitelabelTemplate } = useContext(FeatureFlagsContext)
   return referralMap[whitelabelTemplate]
 }
+

@@ -1,14 +1,8 @@
+"use client"
+
 import * as AlertDialog from "@radix-ui/react-alert-dialog"
-import {
-  ExclamationTriangleIcon,
-  MagnifyingGlassIcon,
-  MinusCircledIcon,
-} from "@radix-ui/react-icons"
-import {
-  Button,
-  Callout,
-  AlertDialog as themes_AlertDialog,
-} from "@radix-ui/themes"
+import { ExclamationTriangleIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons"
+import { Button, Callout, AlertDialog as themes_AlertDialog } from "@radix-ui/themes"
 
 export function WalletBannedDialog({
   open,
@@ -55,29 +49,19 @@ function FailureContent({
             <div className="bg-amber-100 dark:bg-amber-900 rounded-full p-1 mt-0.5">
               <MagnifyingGlassIcon className="w-3 h-3 text-amber-600 dark:text-amber-400" />
             </div>
-            <span className="text-sm">
-              Wallet address was created before EVM support was added to NEAR
-            </span>
+            <span className="text-sm">Wallet address was created before EVM support was added to NEAR</span>
           </li>
         </ul>
       </div>
 
       {/* Warning Message */}
       <Callout.Root className="mb-6 bg-warning px-3 py-2 text-warning-foreground">
-        <Callout.Text className="text-xs">
-          Please use a different wallet to continue.
-        </Callout.Text>
+        <Callout.Text className="text-xs">Please use a different wallet to continue.</Callout.Text>
       </Callout.Root>
 
       <div className="flex flex-col sm:flex-row justify-center gap-3 mt-6">
         <themes_AlertDialog.Cancel>
-          <Button
-            size="4"
-            type="button"
-            variant="soft"
-            color="gray"
-            onClick={onCancel}
-          >
+          <Button size="4" type="button" variant="soft" color="gray" onClick={onCancel}>
             Disconnect
           </Button>
         </themes_AlertDialog.Cancel>
@@ -85,3 +69,4 @@ function FailureContent({
     </>
   )
 }
+
