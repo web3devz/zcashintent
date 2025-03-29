@@ -129,7 +129,7 @@ export const LIST_TOKENS: TokenWithTags[] = [
         name: "USD Coin",
       },
     ],
-    tags: ["mc:7", "type:stablecoin"],
+    tags: ["mc:997"],
   },
  
   {
@@ -144,7 +144,7 @@ export const LIST_TOKENS: TokenWithTags[] = [
     routes: [],
     symbol: "ZEC",
     name: "Zcash",
-    tags: ["mc:120"],
+    tags: ["mc:12"],
   },
   {
     unifiedAssetId: "near",

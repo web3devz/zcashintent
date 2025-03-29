@@ -130,7 +130,6 @@ const RootLayout = async ({
           </WagmiProvider>
         </ThemeProvider>
       </body>
-      <GoogleAnalytics gaId="G-WNE3NB46KM" />
     </html>
   )
 }
