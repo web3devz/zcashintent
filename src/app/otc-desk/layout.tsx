@@ -7,7 +7,7 @@ import { PreloadFeatureFlags } from "@src/components/PreloadFeatureFlags"
 const OtcDeskLayout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <PreloadFeatureFlags>
-      <Layout>{children}</Layout>
+     <h2>Working on this</h2>
     </PreloadFeatureFlags>
   )
 }
